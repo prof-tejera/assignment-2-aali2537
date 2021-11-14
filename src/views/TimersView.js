@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import Timer from "../components/timers/Timer";
+import TimerProvider, {
+  TimerContext,
+} from "../components/context/TimerContext";
 
 const Timers = styled.div`
   display: flex;
@@ -54,14 +57,16 @@ function App() {
   ];
 
   return (
-    <Timers>
-      {timers.map((timer, index) => (
-        <TimerContainer key={index}>
-          <TimerTitle>{timer.title}</TimerTitle>
-          {timer.C}
-        </TimerContainer>
-      ))}
-    </Timers>
+    <TimerProvider>
+      <Timers>
+        {timers.map((timer, index) => (
+          <TimerContainer key={index}>
+            <TimerTitle>{timer.title}</TimerTitle>
+            {timer.C}
+          </TimerContainer>
+        ))}
+      </Timers>
+    </TimerProvider>
   );
 }
 
