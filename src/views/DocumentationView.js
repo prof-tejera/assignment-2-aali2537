@@ -51,41 +51,20 @@ class Documentation extends React.Component {
           />
           <DocumentComponent
             title="Circle "
-            component={
-              <Circle
-                size={100}
-                percent={100}
-                strokeWidth={10}
-                timerVisible={false}
-              />
-            }
+            component={<Circle size={100} strokeWidth={10} />}
             propDocs={[
               {
                 prop: "size",
                 description:
                   "Determines the width and height of the svg element",
                 type: "int",
-                defaultValue: "200",
+                defaultValue: "450",
               },
               {
                 prop: "strokeWidth",
                 description: "Determines the thickness of the progress bar",
                 type: "int",
-                defaultValue: "15",
-              },
-              {
-                prop: "percent",
-                description:
-                  "Determines how much of the progress bar should be filled",
-                type: "int",
-                defaultValue: "100",
-              },
-              {
-                prop: "rest of the props",
-                description:
-                  "The rest of the props are either passed along to other props (explained in documentation of those props) for use or are made for plans of future functionality but currently are not used.",
-                type: "N/A",
-                defaultValue: "N/A",
+                defaultValue: "20",
               },
             ]}
           />

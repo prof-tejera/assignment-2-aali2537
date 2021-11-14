@@ -50,7 +50,6 @@ function App() {
           timerType={"Tabata"}
           currentRound={2}
           roundType={"Work"}
-          percent={66}
         />
       ),
     },

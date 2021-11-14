@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import { calcRadius, calcCircum, calcOffset } from "../../utils/helpers";
+import { TimerContext } from "../context/TimerContext";
 
 const progressColor = "#a80874";
 
@@ -17,7 +18,9 @@ const ProgressCircle = styled.circle`
   transform-origin: 50% 50%;
 `;
 
-const Circle = ({ size, strokeWidth, percent }) => {
+const Circle = ({ size, strokeWidth }) => {
+  const { percent } = useContext(TimerContext);
+
   return (
     <svg width={size} height={size}>
       <ProgressCircle
@@ -41,13 +44,11 @@ const Circle = ({ size, strokeWidth, percent }) => {
 Circle.propType = {
   size: PropTypes.number,
   strokeWidth: PropTypes.number,
-  percent: PropTypes.number,
 };
 
 Circle.defaultProps = {
-  size: 200,
-  strokeWidth: 15,
-  percent: 0,
+  size: 450,
+  strokeWidth: 20,
 };
 
 export default Circle;
