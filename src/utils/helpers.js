@@ -26,3 +26,12 @@ export function formatNumber(int) {
     useGrouping: false,
   });
 }
+
+//Takes an argument in the form of milliseconds and outputs to format MM:SS:MS
+export function convertFromMs(time) {
+  const milliseconds = formatNumber((time % 1000) / 10);
+  const seconds = formatNumber(Math.floor((time / 1000) % 60));
+  const minutes = formatNumber(Math.floor((time / (1000 * 60)) % 60));
+
+  return `${minutes}:${seconds}:${milliseconds}`;
+}
