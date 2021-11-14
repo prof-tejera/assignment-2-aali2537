@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { convertFromMs } from "../../utils/helpers";
+import { TimerContext } from "../context/TimerContext";
 
 const TimerText = styled.p`
   position: absolute;
@@ -25,7 +25,9 @@ const RoundTypeText = styled(RoundText)`
   font-size: 0.8em;
 `;
 
-const TextDisplay = ({ timerType, currentTime, currentRound, roundType }) => {
+const TextDisplay = () => {
+  const { timerType, currentTime, currentRound, roundType } =
+    useContext(TimerContext);
   const displayRound = timerType === "XY" || timerType === "Tabata";
   const displayRoundType = timerType === "Tabata";
 

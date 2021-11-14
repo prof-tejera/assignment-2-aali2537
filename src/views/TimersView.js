@@ -2,9 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Timer from "../components/timers/Timer";
-import TimerProvider, {
-  TimerContext,
-} from "../components/context/TimerContext";
+import TimerProvider from "../components/context/TimerContext";
 
 const Timers = styled.div`
   display: flex;

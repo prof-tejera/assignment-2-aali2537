@@ -7,28 +7,20 @@ import Circle from "../generic/Circle";
 import TextDisplay from "../generic/TextDisplay";
 import Button from "../generic/Button";
 
+//Circle size settings
+const circleSize = 450;
+const circleStroke = 20;
+
 const RelDiv = styled.div`
   position: relative;
 `;
 
-const Timer = ({
-  size,
-  strokeWidth,
-  percent,
-  timerType,
-  currentRound,
-  roundType,
-}) => {
+const Timer = () => {
   return (
     <Panel>
       <RelDiv>
-        <Circle size={size} strokeWidth={strokeWidth} percent={percent} />
-        <TextDisplay
-          currentTime={5010}
-          timerType={timerType}
-          currentRound={currentRound}
-          roundType={roundType}
-        />
+        <Circle size={circleSize} strokeWidth={circleStroke} />
+        <TextDisplay />
       </RelDiv>
       <div>
         <Button type="Primary" />
@@ -36,11 +28,6 @@ const Timer = ({
       </div>
     </Panel>
   );
-};
-
-Timer.propTypes = {
-  size: PropTypes.number,
-  strokeWidth: PropTypes.number,
 };
 
 export default Timer;

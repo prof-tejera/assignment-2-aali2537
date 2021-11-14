@@ -5,6 +5,7 @@ export const TimerContext = React.createContext({});
 const TimerProvider = ({ children }) => {
   const [timerType, setTimerType] = useState("Stopwatch");
   const [percent, setPercent] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
   const [currentRound, setCurrentRound] = useState(1);
   const [maxRound, setMaxRound] = useState(5);
   const [roundType, setRoundType] = useState("Work");
@@ -16,6 +17,8 @@ const TimerProvider = ({ children }) => {
         setTimerType,
         percent,
         setPercent,
+        currentTime,
+        setCurrentTime,
         currentRound,
         setCurrentRound,
         maxRound,
