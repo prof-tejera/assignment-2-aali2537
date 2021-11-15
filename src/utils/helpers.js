@@ -35,3 +35,11 @@ export function convertFromMs(time) {
 
   return `${minutes}:${seconds}:${milliseconds}`;
 }
+
+//Mapping of Timer type to tab position values
+export const tabMap = {
+  Stopwatch: "0em",
+  Countdown: "10em",
+  XY: "20em",
+  Tabata: "30em",
+};

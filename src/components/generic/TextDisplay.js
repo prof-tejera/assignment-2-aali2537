@@ -10,19 +10,19 @@ const TimerText = styled.p`
   color: white;
   top: 45%;
   left: 50%;
-  font-size: 2em;
+  font-size: 3em;
   transform: translate(-50%, -50%);
 `;
 
 const RoundText = styled(TimerText)`
   top: 57%;
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: bold;
 `;
 
 const RoundTypeText = styled(RoundText)`
   top: 67%;
-  font-size: 0.8em;
+  font-size: 1.2em;
 `;
 
 const TextDisplay = () => {

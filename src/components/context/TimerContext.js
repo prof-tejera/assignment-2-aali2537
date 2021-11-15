@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { tabMap } from "../../utils/helpers";
 
 export const TimerContext = React.createContext({});
 
@@ -9,12 +10,18 @@ const TimerProvider = ({ children }) => {
   const [currentRound, setCurrentRound] = useState(1);
   const [maxRound, setMaxRound] = useState(5);
   const [roundType, setRoundType] = useState("Work");
+  const [tabPos, setTabPos] = useState("0em");
+
+  const selectTimer = (timer) => {
+    setTimerType(timer);
+    setTabPos(tabMap[timer]);
+  };
 
   return (
     <TimerContext.Provider
       value={{
         timerType,
-        setTimerType,
+        selectTimer,
         percent,
         setPercent,
         currentTime,
@@ -25,6 +32,7 @@ const TimerProvider = ({ children }) => {
         setMaxRound,
         roundType,
         setRoundType,
+        tabPos,
       }}
     >
       {children}
