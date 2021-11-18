@@ -1,8 +1,8 @@
 {
-  "name": "assignment-1",
+  "name": "assignment-2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aali2537.github.io/assignment-1-aali2537",
+  "homepage": "https://aali2537.github.io/assignment-2-aali2537",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
