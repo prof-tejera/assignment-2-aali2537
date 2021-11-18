@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 import { convertFromMs } from "../../utils/helpers";
 import { TimerContext } from "../context/TimerContext";
@@ -12,11 +12,6 @@ const TimerText = styled.p`
   left: 50%;
   font-size: 3em;
   transform: translate(-50%, -50%);
-
-  .hide p {
-    opacity: 0;
-    visibile: hidden;
-  }
 `;
 
 const RoundText = styled(TimerText)`

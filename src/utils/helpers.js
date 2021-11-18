@@ -46,17 +46,16 @@ export const tabMap = {
 
 //Calculates percentage based on timer type and timers given (expecting an object with second argument with times)
 export function calcRoundTime(timerType, times) {
-  if (timerType == "Stopwatch" || timerType == "Countdown") {
+  if (timerType === "Stopwatch" || timerType === "Countdown") {
     return times.minutes * 60000 + times.seconds * 1000;
   }
 
-  if (timerType == "XY") {
+  if (timerType === "XY") {
     return times.minutes * 60000 + times.seconds * 1000;
   }
 
-  if (timerType == "Tabata") {
-    if (times.roundType == "Work") {
-      console.log(times.work * 1000);
+  if (timerType === "Tabata") {
+    if (times.roundType === "Work") {
       return times.work * 1000;
     } else {
       return times.rest * 1000;

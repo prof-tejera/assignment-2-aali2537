@@ -70,7 +70,7 @@ const TimerProvider = ({ children }) => {
     setRoundTime(0);
     setPercent(0);
     setCongratsFlag(false);
-    if (timerType == "Countdown" || timerType == "XY") {
+    if (timerType === "Countdown" || timerType === "XY") {
       setCurrentTime(easyRoundTime());
       setPercent(100);
     } else {
@@ -123,7 +123,7 @@ const TimerProvider = ({ children }) => {
   useEffect(() => {
     if (timerActive) {
       const id = setInterval(() => {
-        if (timerType === "Countdown" || timerType == "XY") {
+        if (timerType === "Countdown" || timerType === "XY") {
           setCurrentTime((count) => count - 50);
         } else {
           setCurrentTime((count) => count + 50);
@@ -137,7 +137,7 @@ const TimerProvider = ({ children }) => {
 
   //Flip activating means users most likely changed settings
   useEffect(() => {
-    if (timerType == "XY" || timerType == "Countdown") {
+    if (timerType === "XY" || timerType === "Countdown") {
       setCurrentTime(easyRoundTime());
       setPercent(100);
     }
@@ -154,12 +154,12 @@ const TimerProvider = ({ children }) => {
   useEffect(() => {
     if (percent >= 100) {
       //Reset state as countdown and stopwatch timers only have one round
-      if (timerType == "Stopwatch") {
+      if (timerType === "Stopwatch") {
         softReset();
         setCongratsFlag(true);
       }
-      if (timerType == "Tabata") {
-        if (roundType == "Work") {
+      if (timerType === "Tabata") {
+        if (roundType === "Work") {
           setPercent(0);
           setRoundType("Rest");
           setCurrentTime(0);
@@ -174,11 +174,11 @@ const TimerProvider = ({ children }) => {
         }
       }
     } else if (percent <= 0) {
-      if (timerType == "Countdown") {
+      if (timerType === "Countdown") {
         softReset();
         setCongratsFlag(true);
       }
-      if (timerType == "XY") {
+      if (timerType === "XY") {
         if (currentRound < maxRound) {
           nextRound(roundTime, 100);
         } else {

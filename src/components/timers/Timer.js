@@ -67,7 +67,6 @@ const Timer = () => {
     flipped,
     setFlipped,
     btnActive,
-    resetState,
     toggleTimer,
     timerActive,
     setFastForwardFlag,

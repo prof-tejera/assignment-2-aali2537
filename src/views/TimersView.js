@@ -11,8 +11,6 @@ const TimerContainer = styled.div`
   align-items: center;
 `;
 
-const TimerTitle = styled.div``;
-
 function App() {
   return (
     <TimerProvider>

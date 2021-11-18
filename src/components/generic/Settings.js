@@ -1,4 +1,4 @@
-import react, { useContext } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 
 import Button from "./Button";
