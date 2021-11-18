@@ -53,7 +53,10 @@ const FrontSide = styled.div`
 `;
 
 const BackSide = styled(FrontSide)`
+  background-color: #0f242e;
   transform: rotateY(180deg);
+  height: 43em;
+  width: 28.1em;
 `;
 
 const Timer = () => {
@@ -74,6 +77,9 @@ const Timer = () => {
             <Button icon={"play"} left={50} />
           </BottomButtonRow>
         </FrontSide>
+        <BackSide>
+          <Settings />
+        </BackSide>
       </Flipper>
     </FlipContainer>
   );
