@@ -38,6 +38,8 @@ const Flipper = styled(Panel)`
   transition: 0.6s;
   transform-style: preserve-3d;
   position: relative;
+  height: 38em;
+  width: 28.1em;
 `;
 
 const Timer = () => {
