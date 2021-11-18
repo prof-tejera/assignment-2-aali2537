@@ -27,6 +27,7 @@ const BottomButtonRow = styled.div`
   height: 5em;
   position: relative;
   margin-top: 1em;
+  width: 100%;
 `;
 
 const FlipContainer = styled.div`
@@ -62,7 +63,16 @@ const BackSide = styled(FrontSide)`
 `;
 
 const Timer = () => {
-  const { flipped, setFlipped } = useContext(TimerContext);
+  const {
+    flipped,
+    setFlipped,
+    btnActive,
+    resetState,
+    toggleTimer,
+    timerActive,
+    setFastForwardFlag,
+    setResetFlag,
+  } = useContext(TimerContext);
 
   return (
     <FlipContainer>
@@ -81,7 +91,24 @@ const Timer = () => {
             <TextDisplay />
           </RelDiv>
           <BottomButtonRow>
-            <Button icon={"play"} left={50} top={40} />
+            <Button
+              icon={"reset"}
+              left={btnActive ? 20 : 50}
+              top={40}
+              onClick={() => setResetFlag(true)}
+            />
+            <Button
+              icon={"fast-forward"}
+              left={btnActive ? 80 : 50}
+              top={40}
+              onClick={() => setFastForwardFlag(true)}
+            />
+            <Button
+              icon={timerActive ? "pause" : "play"}
+              left={50}
+              top={40}
+              onClick={() => toggleTimer()}
+            />
           </BottomButtonRow>
         </FrontSide>
         <BackSide>

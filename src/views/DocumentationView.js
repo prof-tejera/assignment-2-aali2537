@@ -7,6 +7,8 @@ import Loading from "../components/generic/Loading";
 import Button from "../components/generic/Button";
 import Circle from "../components/generic/Circle";
 import Panel from "../components/generic/Panel";
+import Label from "../components/generic/Label";
+import Input from "../components/generic/Input";
 
 const Container = styled.div`
   display: flex;
@@ -38,14 +40,29 @@ class Documentation extends React.Component {
           />
           <DocumentComponent
             title="Button "
-            component={<Button type="Primary" />}
+            component={
+              <div style={{ position: "relative" }}>
+                <Button icon="play" />
+              </div>
+            }
             propDocs={[
               {
-                prop: "type",
-                description:
-                  "Changes button between the primary color scheme or secondary color depending on value",
+                prop: "icon",
+                description: "Changes color and icon depending on input",
                 type: "string",
-                defaultValue: "Primary",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "left",
+                description: "changes css left property for animation purposes",
+                type: "number",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "top",
+                description: "Changes top position for animation purposes",
+                type: "number",
+                defaultValue: "N/A",
               },
             ]}
           />
@@ -73,11 +90,34 @@ class Documentation extends React.Component {
             component={<Panel>Panel Content</Panel>}
             propDocs={[
               {
-                prop: "type",
-                description:
-                  "Changes button between the primary color scheme or secondary color depending on value",
-                type: "string",
-                defaultValue: "Primary",
+                prop: "N/A",
+                description: "Elevated div for paneling look",
+                type: "N/A",
+                defaultValue: "N/A",
+              },
+            ]}
+          />
+          <DocumentComponent
+            title="Label "
+            component={<Label>Label</Label>}
+            propDocs={[
+              {
+                prop: "N/A",
+                description: "White Styled Label",
+                type: "N/A",
+                defaultValue: "N/A",
+              },
+            ]}
+          />
+          <DocumentComponent
+            title="Label "
+            component={<Input></Input>}
+            propDocs={[
+              {
+                prop: "N/A",
+                description: "Styled input for taking settings options",
+                type: "N/A",
+                defaultValue: "N/A",
               },
             ]}
           />

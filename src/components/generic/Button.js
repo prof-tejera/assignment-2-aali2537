@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled, { keyframes } from "styled-components";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -10,11 +11,9 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { TimerContext } from "../context/TimerContext";
-import { icon } from "@fortawesome/fontawesome-svg-core";
-
 const iconSize = 70;
 const panelBackground = "#0f242e";
+const transitionCurve = "0.8s cubic-bezier(0.81, -0.21, 0.24, 1.09)";
 
 const icons = {
   play: faPlay,
@@ -103,6 +102,7 @@ const Wrapper = styled.div`
   width: ${iconSize}px;
   left: ${(props) => props.left}%;
   top: ${(props) => props.top}%;
+  transition: ${transitionCurve};
   margin-left: -35px;
 `;
 
@@ -116,6 +116,19 @@ const Button = ({ icon, onClick, left, top }) => {
       </div>
     </Wrapper>
   );
+};
+
+Button.propTypes = {
+  icon: PropTypes.oneOf([
+    "play",
+    "pause",
+    "reset",
+    "save",
+    "setting",
+    "fast-forward",
+  ]),
+  left: PropTypes.number,
+  top: PropTypes.number,
 };
 
 export default Button;

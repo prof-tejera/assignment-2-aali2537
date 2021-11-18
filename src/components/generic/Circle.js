@@ -16,6 +16,7 @@ const ProgressCircle = styled.circle`
   stroke-dashoffset: ${(props) => calcOffset(props.r, props.percent)};
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
+  transition: all 0.3s ease-out;
 `;
 
 const Circle = ({ size, strokeWidth }) => {

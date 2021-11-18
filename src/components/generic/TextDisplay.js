@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { convertFromMs } from "../../utils/helpers";
 import { TimerContext } from "../context/TimerContext";
@@ -12,6 +12,11 @@ const TimerText = styled.p`
   left: 50%;
   font-size: 3em;
   transform: translate(-50%, -50%);
+
+  .hide p {
+    opacity: 0;
+    visibile: hidden;
+  }
 `;
 
 const RoundText = styled(TimerText)`
@@ -26,16 +31,22 @@ const RoundTypeText = styled(RoundText)`
 `;
 
 const TextDisplay = () => {
-  const { timerType, currentTime, currentRound, roundType } =
+  const { timerType, currentTime, currentRound, roundType, congratsFlag } =
     useContext(TimerContext);
   const displayRound = timerType === "XY" || timerType === "Tabata";
   const displayRoundType = timerType === "Tabata";
 
   return (
     <>
-      <TimerText>{convertFromMs(currentTime)}</TimerText>
-      {displayRound && <RoundText>Round {currentRound}</RoundText>}
-      {displayRoundType && <RoundTypeText>{roundType}</RoundTypeText>}
+      {congratsFlag && <TimerText>Nice job!</TimerText>}
+      {!congratsFlag && <TimerText>{convertFromMs(currentTime)}</TimerText>}
+      {congratsFlag && <RoundText className="fadeIn2">Try Again?</RoundText>}
+      {displayRound && !congratsFlag && (
+        <RoundText>Round {currentRound}</RoundText>
+      )}
+      {displayRoundType && !congratsFlag && (
+        <RoundTypeText>{roundType}</RoundTypeText>
+      )}
     </>
   );
 };

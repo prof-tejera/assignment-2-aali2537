@@ -48,26 +48,30 @@ const Settings = () => {
       <div>
         <Label>Settings</Label>
       </div>
-      <FlexDiv>
-        <SubLabel>Minutes: </SubLabel>
-        <Input
-          type="text"
-          name="Minutes"
-          placeholder="Minutes"
-          onChange={(e) => setMinuteSetting(e.target.value)}
-          value={minuteSetting}
-        />
-      </FlexDiv>
-      <FlexDiv>
-        <SubLabel>Seconds: </SubLabel>
-        <Input
-          type="text"
-          name="Seconds"
-          placeholder="Seconds"
-          onChange={(e) => setSecondSetting(e.target.value)}
-          value={secondSetting}
-        />
-      </FlexDiv>
+      {!showRoundType && (
+        <FlexDiv>
+          <SubLabel>Minutes: </SubLabel>
+          <Input
+            type="text"
+            name="Minutes"
+            placeholder="Minutes"
+            onChange={(e) => setMinuteSetting(e.target.value)}
+            value={minuteSetting}
+          />
+        </FlexDiv>
+      )}
+      {!showRoundType && (
+        <FlexDiv>
+          <SubLabel>Seconds: </SubLabel>
+          <Input
+            type="text"
+            name="Seconds"
+            placeholder="Seconds"
+            onChange={(e) => setSecondSetting(e.target.value)}
+            value={secondSetting}
+          />
+        </FlexDiv>
+      )}
       {showRounds && (
         <FlexDiv>
           <SubLabel>Rounds: </SubLabel>
