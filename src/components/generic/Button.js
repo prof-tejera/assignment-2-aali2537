@@ -7,6 +7,7 @@ import {
   faFastForward,
   faUndo,
   faCog,
+  faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { TimerContext } from "../context/TimerContext";
@@ -21,6 +22,7 @@ const icons = {
   "fast-forward": faFastForward,
   reset: faUndo,
   setting: faCog,
+  save: faCheck,
 };
 
 const colors = {
@@ -29,6 +31,7 @@ const colors = {
   pause: "#ED7D3A",
   "fast-forward": "#5398BE",
   setting: "#CB9173",
+  save: "#15cb61",
 };
 
 const Pulse = keyframes`
@@ -37,37 +40,6 @@ const Pulse = keyframes`
   }
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-  }
-`;
-
-const Ripple = styled.div`
-  height: ${iconSize}px;
-  width: ${iconSize}px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 50%;
-  cursor: pointer;
-  opacity: 0;
-  transition: all 0.5s;
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    box-shadow: 0 0 0 20px rgba(255, 255, 255);
-    opacity: 0;
-    transition: 0.5s;
-  }
-
-  &:active::after {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255);
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 1;
-    transition: 0s;
   }
 `;
 
@@ -130,12 +102,13 @@ const Wrapper = styled.div`
   height: ${iconSize}px;
   width: ${iconSize}px;
   left: ${(props) => props.left}%;
+  top: ${(props) => props.top}%;
   margin-left: -35px;
 `;
 
-const Button = ({ icon, onClick, left }) => {
+const Button = ({ icon, onClick, left, top }) => {
   return (
-    <Wrapper left={left}>
+    <Wrapper top={top} left={left}>
       <div onClick={onClick}>
         <CircleButton icon={icon}>
           <FontAwesomeIcon icon={icons[icon]} />

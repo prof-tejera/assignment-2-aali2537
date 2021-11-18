@@ -34,7 +34,7 @@ const FlipContainer = styled.div`
 `;
 
 const Flipper = styled(Panel)`
-  &:hover {
+  &.flip {
     transform: rotateY(180deg);
   }
   transition: 0.6s;
@@ -46,6 +46,7 @@ const Flipper = styled(Panel)`
 
 const FrontSide = styled.div`
   backface-visibility: hidden;
+  transform-style: preserve-3d;
 
   position: absolute;
   top: 0;
@@ -57,24 +58,30 @@ const BackSide = styled(FrontSide)`
   transform: rotateY(180deg);
   height: 43em;
   width: 28.1em;
+  border-radius: 1em;
 `;
 
 const Timer = () => {
-  const { btn1, setBtn1 } = useContext(TimerContext);
+  const { flipped, setFlipped } = useContext(TimerContext);
 
   return (
     <FlipContainer>
-      <Flipper>
+      <Flipper className={flipped ? "flip" : ""}>
         <FrontSide>
           <TopButtonRow>
-            <Button icon={"setting"} left={90} />
+            <Button
+              icon={"setting"}
+              top={10}
+              left={90}
+              onClick={() => setFlipped(!flipped)}
+            />
           </TopButtonRow>
           <RelDiv>
             <Circle size={circleSize} strokeWidth={circleStroke} />
             <TextDisplay />
           </RelDiv>
           <BottomButtonRow>
-            <Button icon={"play"} left={50} />
+            <Button icon={"play"} left={50} top={40} />
           </BottomButtonRow>
         </FrontSide>
         <BackSide>
