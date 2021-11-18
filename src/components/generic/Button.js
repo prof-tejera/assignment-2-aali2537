@@ -1,62 +1,148 @@
-import React from "react";
-import styled from "styled-components";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
+import styled, { keyframes } from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlay,
+  faPause,
+  faFastForward,
+  faUndo,
+  faCog,
+} from "@fortawesome/free-solid-svg-icons";
 
-const PrimaryButton = styled.button`
-  background-color: #15cb61;
-  color: white;
-  margin-top: 4em;
-  margin-right: 1em;
-  margin-left 1em;
-  border-width: 0;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-  font-family: Segoe UI;
-  font-size: 20px;
-  padding: 1em 2em;
-  transition: background-color .4s;
+import { TimerContext } from "../context/TimerContext";
+import { icon } from "@fortawesome/fontawesome-svg-core";
 
-  :hover {
-    background-color: #11a64f;
-    cursor: pointer;
-  }
+const iconSize = 70;
+const panelBackground = "#0f242e";
 
-  :active {
-    background-color: #0e813e;
-  }
-`;
-
-const SecondaryButton = styled(PrimaryButton)`
-  background-color: #ea3546;
-
-  :hover {
-    background-color: #de172b;
-  }
-
-  :active {
-    background-color: #b91324;
-  }
-`;
-
-class Button extends React.Component {
-  render() {
-    const { type } = this.props;
-
-    return (
-      <>
-        {type === "Primary" && <PrimaryButton>Start</PrimaryButton>}
-        {type === "Secondary" && <SecondaryButton>Pause</SecondaryButton>}
-      </>
-    );
-  }
-}
-
-Button.propTypes = {
-  type: PropTypes.oneOf(["Primary", "Secondary"]),
+const icons = {
+  play: faPlay,
+  pause: faPause,
+  "fast-forward": faFastForward,
+  reset: faUndo,
+  setting: faCog,
 };
 
-Button.defaultProps = {
-  type: "Primary",
+const colors = {
+  play: "#15cb61",
+  reset: "#EF2D56",
+  pause: "#ED7D3A",
+  "fast-forward": "#5398BE",
+  setting: "#CB9173",
+};
+
+const Pulse = keyframes`
+  70% {
+    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+`;
+
+const Ripple = styled.div`
+  height: ${iconSize}px;
+  width: ${iconSize}px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.5s;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 0 20px rgba(255, 255, 255);
+    opacity: 0;
+    transition: 0.5s;
+  }
+
+  &:active::after {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: 0s;
+  }
+`;
+
+const CircleButton = styled.div`
+  height: ${iconSize}px;
+  width: ${iconSize}px;
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.5s;
+  opacity: 1;
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+
+  button {
+    position: absolute;
+  }
+
+  &:active {
+    animation: ${Pulse};
+    animation-iteration-count: 1;
+    animation-duration: 0.5s;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transition: all 0.25s ease;
+    border-radius: 50%;
+  }
+
+  &::after {
+    box-shadow: inset 0 0 0 1px ${(props) => colors[props.icon]};
+  }
+
+  &::before {
+    background: ${(props) => colors[props.icon]};
+    box-shadow: inset 0 0 0 ${iconSize}px ${panelBackground};
+  }
+
+  &:hover::before {
+    box-shadow: inset 0 0 0 1px ${panelBackground};
+  }
+
+  svg {
+    position: relative;
+    font-size: ${iconSize / 2}px;
+    color: white;
+  }
+`;
+
+const Wrapper = styled.div`
+  position: absolute;
+  height: ${iconSize}px;
+  width: ${iconSize}px;
+  left: ${(props) => props.left}%;
+  margin-left: -35px;
+`;
+
+const Button = ({ icon, onClick, left }) => {
+  return (
+    <Wrapper left={left}>
+      <div onClick={onClick}>
+        <CircleButton icon={icon}>
+          <FontAwesomeIcon icon={icons[icon]} />
+        </CircleButton>
+      </div>
+    </Wrapper>
+  );
 };
 
 export default Button;

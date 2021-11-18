@@ -11,7 +11,9 @@ const TimerProvider = ({ children }) => {
   const [maxRound, setMaxRound] = useState(5);
   const [roundType, setRoundType] = useState("Work");
   const [tabPos, setTabPos] = useState("0em");
+  const [btn1, setBtn1] = useState("play");
 
+  //Sets the current timer and animates the moving tab
   const selectTimer = (timer) => {
     setTimerType(timer);
     setTabPos(tabMap[timer]);
@@ -33,6 +35,8 @@ const TimerProvider = ({ children }) => {
         roundType,
         setRoundType,
         tabPos,
+        btn1,
+        setBtn1,
       }}
     >
       {children}
