@@ -17,6 +17,7 @@ const RelDiv = styled.div`
 `;
 
 const TopButtonRow = styled.div`
+  margin-top: 1em;
   margin-right: 1em;
   position: relative;
   height: 4.5em;
@@ -25,6 +26,7 @@ const TopButtonRow = styled.div`
 const BottomButtonRow = styled.div`
   height: 5em;
   position: relative;
+  margin-top: 1em;
 `;
 
 const FlipContainer = styled.div`
@@ -42,22 +44,36 @@ const Flipper = styled(Panel)`
   width: 28.1em;
 `;
 
+const FrontSide = styled.div`
+  backface-visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+const BackSide = styled(FrontSide)`
+  transform: rotateY(180deg);
+`;
+
 const Timer = () => {
   const { btn1, setBtn1 } = useContext(TimerContext);
 
   return (
     <FlipContainer>
       <Flipper>
-        <TopButtonRow>
-          <Button icon={"setting"} left={90} />
-        </TopButtonRow>
-        <RelDiv>
-          <Circle size={circleSize} strokeWidth={circleStroke} />
-          <TextDisplay />
-        </RelDiv>
-        <BottomButtonRow>
-          <Button icon={"play"} left={50} />
-        </BottomButtonRow>
+        <FrontSide>
+          <TopButtonRow>
+            <Button icon={"setting"} left={90} />
+          </TopButtonRow>
+          <RelDiv>
+            <Circle size={circleSize} strokeWidth={circleStroke} />
+            <TextDisplay />
+          </RelDiv>
+          <BottomButtonRow>
+            <Button icon={"play"} left={50} />
+          </BottomButtonRow>
+        </FrontSide>
       </Flipper>
     </FlipContainer>
   );
