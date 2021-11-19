@@ -64,9 +64,6 @@ const TimerProvider = ({ children }) => {
     setMaxRound(5);
     setWorkLength(30);
     setRestLength(10);
-    setFlipped(false);
-    setTimerActive(false);
-    setBtnActive(false);
     setRoundTime(0);
     setPercent(0);
     setCongratsFlag(false);
@@ -124,24 +121,16 @@ const TimerProvider = ({ children }) => {
     if (timerActive) {
       const id = setInterval(() => {
         if (timerType === "Countdown" || timerType === "XY") {
-          setCurrentTime((count) => count - 50);
+          setCurrentTime((count) => count - 1000);
         } else {
-          setCurrentTime((count) => count + 50);
+          setCurrentTime((count) => count + 1000);
         }
-      }, 50);
+      }, 1000);
       return () => {
         clearInterval(id);
       };
     }
-  }, [timerActive]);
-
-  //Flip activating means users most likely changed settings
-  useEffect(() => {
-    if (timerType === "XY" || timerType === "Countdown") {
-      setCurrentTime(easyRoundTime());
-      setPercent(100);
-    }
-  }, [flipped]);
+  }, [timerActive, timerType]);
 
   //Calculate each round type and progress bar percentage
   useEffect(() => {
