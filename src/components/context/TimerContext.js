@@ -40,15 +40,14 @@ const TimerProvider = ({ children }) => {
 
   // Function to make getting the round time easier with less typing
   const easyRoundTime = () => {
-    return calcRoundTime(timerType, {
-      minutes: minuteSetting,
-      seconds: secondSetting,
-      current: currentTime,
-      rounds: maxRound,
-      work: workLength,
-      rest: restLength,
-      roundType: roundType,
-    });
+    return calcRoundTime(
+      timerType,
+      minuteSetting,
+      secondSetting,
+      workLength,
+      restLength,
+      roundType
+    );
   };
 
   //Sets the current timer and animates the moving tab
@@ -67,6 +66,8 @@ const TimerProvider = ({ children }) => {
     setRoundTime(0);
     setPercent(0);
     setCongratsFlag(false);
+    setTimerActive(false);
+    setBtnActive(false);
     if (timerType === "Countdown" || timerType === "XY") {
       setCurrentTime(easyRoundTime());
       setPercent(100);
@@ -134,7 +135,7 @@ const TimerProvider = ({ children }) => {
 
   //Flip activating means users most likely changed settings
   useEffect(() => {
-    if (timerType == "XY" || timerType == "Countdown") {
+    if (timerType === "XY" || timerType === "Countdown") {
       setCurrentTime(easyRoundTime());
       setPercent(100);
     }
