@@ -59,11 +59,11 @@ const TimerProvider = ({ children }) => {
 
   //Reset state to default settings
   const resetState = () => {
-    setMinuteSetting(defaultSettings["minutes"]);
-    setSecondSetting(defaultSettings["seconds"]);
-    setMaxRound(defaultSettings["rounds"]);
-    setWorkLength(defaultSettings["work"]);
-    setRestLength(defaultSettings["rest"]);
+    setMinuteSetting(1);
+    setSecondSetting(10);
+    setMaxRound(5);
+    setWorkLength(30);
+    setRestLength(10);
     setFlipped(false);
     setTimerActive(false);
     setBtnActive(false);
