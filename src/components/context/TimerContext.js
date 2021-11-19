@@ -59,11 +59,11 @@ const TimerProvider = ({ children }) => {
 
   //Reset state to default settings
   const resetState = () => {
-    setMinuteSetting(1);
-    setSecondSetting(10);
-    setMaxRound(5);
-    setWorkLength(30);
-    setRestLength(10);
+    setMinuteSetting(defaultSettings["minutes"]);
+    setSecondSetting(defaultSettings["seconds"]);
+    setMaxRound(defaultSettings["rounds"]);
+    setWorkLength(defaultSettings["work"]);
+    setRestLength(defaultSettings["rest"]);
     setRoundTime(0);
     setPercent(0);
     setCongratsFlag(false);
@@ -131,6 +131,14 @@ const TimerProvider = ({ children }) => {
       };
     }
   }, [timerActive, timerType]);
+
+  //Flip activating means users most likely changed settings
+  useEffect(() => {
+    if (timerType == "XY" || timerType == "Countdown") {
+      setCurrentTime(easyRoundTime());
+      setPercent(100);
+    }
+  }, [flipped]);
 
   //Calculate each round type and progress bar percentage
   useEffect(() => {
