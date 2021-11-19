@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import React, { useState, useEffect } from "react";
 import { tabMap } from "../../utils/helpers";
 import { calcRoundTime } from "../../utils/helpers";
 
