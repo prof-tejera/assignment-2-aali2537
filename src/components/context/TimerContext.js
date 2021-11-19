@@ -121,11 +121,11 @@ const TimerProvider = ({ children }) => {
     if (timerActive) {
       const id = setInterval(() => {
         if (timerType === "Countdown" || timerType === "XY") {
-          setCurrentTime((count) => count - 1000);
+          setCurrentTime((count) => count - 50);
         } else {
-          setCurrentTime((count) => count + 1000);
+          setCurrentTime((count) => count + 50);
         }
-      }, 1000);
+      }, 50);
       return () => {
         clearInterval(id);
       };
