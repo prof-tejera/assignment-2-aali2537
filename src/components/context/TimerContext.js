@@ -109,7 +109,6 @@ const TimerProvider = ({ children }) => {
         setCurrentRound(currentRound + 1);
       }
     } else {
-      console.log("called");
       setCurrentRound(currentRound + 1);
     }
     setRoundTime(easyRoundTime);
