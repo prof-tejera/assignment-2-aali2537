@@ -74,6 +74,7 @@ const TimerProvider = ({ children }) => {
     setMaxRound(defaultSettings["rounds"]);
     setWorkLength(defaultSettings["work"]);
     setRestLength(defaultSettings["rest"]);
+    setRoundType("Work");
     setCurrentRound(1);
     setCongratsFlag(false);
     setTimerActive(false);
@@ -87,6 +88,7 @@ const TimerProvider = ({ children }) => {
     setTimerActive(false);
     setBtnActive(false);
     setCurrentRound(1);
+    setRoundType("Work");
     setCongratsFlag(false);
     setPTime();
   };
@@ -100,13 +102,14 @@ const TimerProvider = ({ children }) => {
 
   //Sets up users for the next round
   const nextRound = (time, percent, type) => {
-    if (type) {
+    if (!!type) {
       setRoundType(type);
       //Only advance round if rest round is complete
-      if (type === "Rest") {
+      if (roundType === "Rest") {
         setCurrentRound(currentRound + 1);
       }
     } else {
+      console.log("called");
       setCurrentRound(currentRound + 1);
     }
     setRoundTime(easyRoundTime);
@@ -200,7 +203,7 @@ const TimerProvider = ({ children }) => {
       //XY timer round logic
       if (timerType === "XY") {
         if (currentRound < maxRound) {
-          nextRound(roundTime, 100);
+          nextRound(roundTime, 100, null);
         } else {
           timerFinished();
         }
