@@ -7,6 +7,7 @@
 - I would also like to say I have made an attempt to clear out some warnings present in the website but trying to clear all the use effect dependency warnings resulted in my application breaking.
 - Swapping between timers counts as a "hard reset" so settings are not maintained between timer switches.
 - Would have liked to add animations to the circle progress bar to smooth out the effect from resetting from 100 progress to 0 progress.
+- Fixed deploy issue by changing import from "react/cjs/react.development" to the normal react library
 
 Submission: https://prof-tejera.github.io/assignment-2-aali2537/
 
