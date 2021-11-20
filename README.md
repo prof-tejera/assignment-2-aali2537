@@ -6,6 +6,8 @@
 - I ran into some issues with the flipping mechanism when testing on chrome for a bit. I believe I solved one issue but there still maybe some bugs present on chrome due to the backface-visibility property.
 - I would also like to say I have made an attempt to clear out some warnings present in the website but trying to clear all the use effect dependency warnings resulted in my application breaking.
 
+Submission: https://prof-tejera.github.io/assignment-2-aali2537/
+
 # Objective
 
 In this assignment, we will start using the foundation we lay in A1 and make our timers fully functional. Each timer will function as described in A1 and the user flow should be the following:
