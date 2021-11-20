@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,15 +33,6 @@ const colors = {
   save: "#15cb61",
 };
 
-const Pulse = keyframes`
-  70% {
-    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-  }
-`;
-
 const CircleButton = styled.div`
   height: ${iconSize}px;
   width: ${iconSize}px;
@@ -57,13 +48,6 @@ const CircleButton = styled.div`
   button {
     position: absolute;
   }
-
-  &:active {
-    animation: ${Pulse};
-    animation-iteration-count: 1;
-    animation-duration: 0.2s;
-  }
-
   &::before,
   &::after {
     content: "";
@@ -96,6 +80,15 @@ const CircleButton = styled.div`
   }
 `;
 
+const Pulse = keyframes`
+  70% {
+    box-shadow: 0 0 0 25px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+`;
+
 const Wrapper = styled.div`
   position: absolute;
   height: ${iconSize}px;
@@ -104,15 +97,37 @@ const Wrapper = styled.div`
   top: ${(props) => props.top}%;
   transition: ${transitionCurve};
   margin-left: -35px;
+
+  .pulse {
+      animation: ${Pulse};
+      animation-iteration-count: 1;
+      animation-duration: 0.5s;
+    }
+  & > div {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, .7);
+    border-radius: 50%;
+  }
+  }
 `;
 
 const Button = ({ icon, onClick, left, top }) => {
+  const addPulse = (e) => {
+    console.log(e.currentTarget);
+    e.currentTarget.classList.add("pulse");
+  };
+
+  const removePulse = (e) => {
+    e.currentTarget.classList.remove("pulse");
+  };
+
   return (
     <Wrapper top={top} left={left}>
-      <div onClick={onClick}>
-        <CircleButton icon={icon}>
-          <FontAwesomeIcon icon={icons[icon]} />
-        </CircleButton>
+      <div onClick={(e) => addPulse(e)} onAnimationEnd={(e) => removePulse(e)}>
+        <div onClick={onClick}>
+          <CircleButton icon={icon}>
+            <FontAwesomeIcon icon={icons[icon]} />
+          </CircleButton>
+        </div>
       </div>
     </Wrapper>
   );
