@@ -8,6 +8,8 @@
 - Swapping between timers counts as a "hard reset" so settings are not maintained between timer switches.
 - Would have liked to add animations to the circle progress bar to smooth out the effect from resetting from 100 progress to 0 progress.
 - Fixed deploy issue by changing import from "react/cjs/react.development" to the normal react library
+- There is a warning with my styled component rerendering a bunch of times due to the way I handled the circle. I tried to implement the .attrs method suggested but was unable to get it to work.
+- Not happy with the way my useEffects are laid out, but trying to fix them when adding to the dependency array broke functionality everywhere.
 
 Submission: https://prof-tejera.github.io/assignment-2-aali2537/
 
