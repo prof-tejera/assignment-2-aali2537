@@ -5,6 +5,9 @@
 - Inspiration for my implementation of the timer selection bar comes from [this article](https://callmenick.com/dev/level-up-animations-cubic-bezier/). Also utilized [this visualization tool](https://cubic-bezier.com) to figure out the exact values for my cubic bezier curve.
 - I ran into some issues with the flipping mechanism when testing on chrome for a bit. I believe I solved one issue but there still maybe some bugs present on chrome due to the backface-visibility property.
 - I would also like to say I have made an attempt to clear out some warnings present in the website but trying to clear all the use effect dependency warnings resulted in my application breaking.
+- Swapping between timers counts as a "hard reset" so settings are not maintained between timer switches.
+- Would have liked to add animations to the circle progress bar to smooth out the effect from resetting from 100 progress to 0 progress.
+- Fixed deploy issue by changing import from "react/cjs/react.development" to the normal react library
 
 Submission: https://prof-tejera.github.io/assignment-2-aali2537/
 
