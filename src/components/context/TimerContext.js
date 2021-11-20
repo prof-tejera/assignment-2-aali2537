@@ -36,6 +36,7 @@ const TimerProvider = ({ children }) => {
   const [resetFlag, setResetFlag] = useState(false);
   const [fastForwardFlag, setFastForwardFlag] = useState(false);
   const [congratsFlag, setCongratsFlag] = useState(false);
+  const [showSettings, setShowSettings] = useState(true);
 
   // Function to make getting the round time easier with less typing
   const easyRoundTime = () => {
@@ -90,40 +91,6 @@ const TimerProvider = ({ children }) => {
     setPTime();
   };
 
-  //Anytime settings change set current time and percentage to make sure they have a fresh value
-  useEffect(() => {
-    setRoundTime(easyRoundTime);
-    setPTime();
-  }, [minuteSetting, secondSetting, maxRound, restLength, workLength]);
-
-  //Sets up users for the next round
-  const nextRound = (time, percent) => {
-    setRoundTime(easyRoundTime);
-    setCurrentRound(currentRound + 1);
-    setPercent(percent);
-    setCurrentTime(time);
-  };
-
-  useEffect(() => {
-    if (fastForwardFlag) {
-      softReset();
-      setFastForwardFlag(false);
-      setCongratsFlag(true);
-    }
-  }, [fastForwardFlag]);
-
-  useEffect(() => {
-    if (resetFlag) {
-      resetState();
-      setResetFlag(false);
-    }
-  }, [resetFlag, resetState]);
-
-  //Resets state upon choosing new timer
-  useEffect(() => {
-    resetState();
-  }, [timerType]);
-
   //Trigger timer start/pause and calculate total time needed for percentage
   const toggleTimer = () => {
     setTimerActive(!timerActive);
@@ -131,9 +98,55 @@ const TimerProvider = ({ children }) => {
     setCongratsFlag(false);
   };
 
+  //Sets up users for the next round
+  const nextRound = (time, percent, type) => {
+    if (type) {
+      setRoundType(type);
+      //Only advance round if rest round is complete
+      if (type === "Rest") {
+        setCurrentRound(currentRound + 1);
+      }
+    } else {
+      setCurrentRound(currentRound + 1);
+    }
+    setRoundTime(easyRoundTime);
+    setPercent(percent);
+    setCurrentTime(time);
+  };
+
+  const timerFinished = () => {
+    softReset();
+    setCongratsFlag(true);
+    setShowSettings(true);
+  };
+
+  //Anytime settings change set current time and percentage to make sure they have a fresh value
+  useEffect(() => {
+    setRoundTime(easyRoundTime);
+    setPTime();
+  }, [minuteSetting, secondSetting, maxRound, restLength, workLength]);
+
+  useEffect(() => {
+    if (fastForwardFlag) {
+      softReset();
+      setFastForwardFlag(false);
+      console.log("called");
+      timerFinished();
+    }
+  }, [fastForwardFlag]);
+
+  useEffect(() => {
+    if (resetFlag) {
+      resetState();
+      setResetFlag(false);
+      setShowSettings(true);
+    }
+  }, [resetFlag, resetState]);
+
   //Start/pause everytime play/pause button is pushed
   useEffect(() => {
     if (timerActive) {
+      setShowSettings(false);
       const id = setInterval(() => {
         if (timerType === "Countdown" || timerType === "XY") {
           setCurrentTime((count) => count - 50);
@@ -145,7 +158,13 @@ const TimerProvider = ({ children }) => {
         clearInterval(id);
       };
     }
-  }, [timerActive, timerType]);
+  }, [timerActive]);
+
+  //Resets state upon choosing new timer
+  useEffect(() => {
+    resetState();
+    setShowSettings(true);
+  }, [timerType]);
 
   //Calculate each round type and progress bar percentage
   useEffect(() => {
@@ -159,38 +178,31 @@ const TimerProvider = ({ children }) => {
     if (percent >= 100 && timerActive) {
       //Reset state as stopwatch timer only have one round
       if (timerType === "Stopwatch") {
-        softReset();
-        setCongratsFlag(true);
+        timerFinished();
       }
       //Tabata timer round completion logic
       if (timerType === "Tabata") {
         if (roundType === "Work") {
-          setPercent(0);
-          setRoundType("Rest");
-          setCurrentTime(0);
-        } else if (currentRound < maxRound) {
-          nextRound(0, 0);
-          setRoundType("Work");
-        }
-        if (currentRound === maxRound) {
-          softReset();
-          setCongratsFlag(true);
-          setCongratsFlag(true);
+          nextRound(0, 0, "Rest");
+        } else {
+          if (currentRound < maxRound) {
+            nextRound(0, 0, "Work");
+          } else {
+            timerFinished();
+          }
         }
       }
     } else if (percent <= 0 && timerActive) {
       //Countdown ends after one round
       if (timerType === "Countdown") {
-        softReset();
-        setCongratsFlag(true);
+        timerFinished();
       }
       //XY timer round logic
       if (timerType === "XY") {
         if (currentRound < maxRound) {
           nextRound(roundTime, 100);
         } else {
-          softReset();
-          setCongratsFlag(true);
+          timerFinished();
         }
       }
     }
@@ -232,6 +244,7 @@ const TimerProvider = ({ children }) => {
         setResetFlag,
         setFastForwardFlag,
         congratsFlag,
+        showSettings,
       }}
     >
       {children}

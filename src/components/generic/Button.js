@@ -61,7 +61,7 @@ const CircleButton = styled.div`
   &:active {
     animation: ${Pulse};
     animation-iteration-count: 1;
-    animation-duration: 0.5s;
+    animation-duration: 0.2s;
   }
 
   &::before,

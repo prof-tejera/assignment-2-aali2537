@@ -71,6 +71,7 @@ const Timer = () => {
     timerActive,
     setFastForwardFlag,
     setResetFlag,
+    showSettings,
   } = useContext(TimerContext);
 
   return (
@@ -78,12 +79,14 @@ const Timer = () => {
       <Flipper className={flipped ? "flip" : ""}>
         <FrontSide>
           <TopButtonRow>
-            <Button
-              icon={"setting"}
-              top={10}
-              left={90}
-              onClick={() => setFlipped(!flipped)}
-            />
+            {showSettings && (
+              <Button
+                icon={"setting"}
+                top={10}
+                left={90}
+                onClick={() => setFlipped(!flipped)}
+              />
+            )}
           </TopButtonRow>
           <RelDiv>
             <Circle size={circleSize} strokeWidth={circleStroke} />
