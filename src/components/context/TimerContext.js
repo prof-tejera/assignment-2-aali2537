@@ -132,7 +132,6 @@ const TimerProvider = ({ children }) => {
     if (fastForwardFlag) {
       softReset();
       setFastForwardFlag(false);
-      console.log("called");
       timerFinished();
     }
   }, [fastForwardFlag]);

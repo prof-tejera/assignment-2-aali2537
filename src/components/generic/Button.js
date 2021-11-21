@@ -112,7 +112,6 @@ const Wrapper = styled.div`
 
 const Button = ({ icon, onClick, left, top }) => {
   const addPulse = (e) => {
-    console.log(e.currentTarget);
     e.currentTarget.classList.add("pulse");
   };
 
