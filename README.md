@@ -10,6 +10,7 @@
 - Fixed deploy issue by changing import from "react/cjs/react.development" to the normal react library
 - There is a warning with my styled component rerendering a bunch of times due to the way I handled the circle. I tried to implement the .attrs method suggested but was unable to get it to work.
 - Not happy with the way my useEffects are laid out, but trying to fix them when adding to the dependency array broke functionality everywhere.
+- Settings have a simple form of validation that disallows users to enter anything but numbers into input fields
 
 Submission: https://prof-tejera.github.io/assignment-2-aali2537/
 
