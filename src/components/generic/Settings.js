@@ -43,6 +43,13 @@ const Settings = () => {
   const showRounds = timerType === "XY" || timerType === "Tabata";
   const showRoundType = timerType === "Tabata";
 
+  //Event handler to prevent user from entering anything but a number
+  const onlyNumber = (e) => {
+    if (!/[0-9]/.test(e.key)) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <Div>
       <div>
@@ -55,6 +62,7 @@ const Settings = () => {
             type="text"
             name="Minutes"
             placeholder="Minutes"
+            onKeyPress={(e) => onlyNumber(e)}
             onChange={(e) => setMinuteSetting(e.target.value)}
             value={minuteSetting}
           />
@@ -67,6 +75,7 @@ const Settings = () => {
             type="text"
             name="Seconds"
             placeholder="Seconds"
+            onKeyPress={(e) => onlyNumber(e)}
             onChange={(e) => setSecondSetting(e.target.value)}
             value={secondSetting}
           />
@@ -79,8 +88,9 @@ const Settings = () => {
             type="text"
             name="Rounds"
             placeholder="Total Rounds"
-            value={maxRound}
+            onKeyPress={(e) => onlyNumber(e)}
             onChange={(e) => setMaxRound(e.target.value)}
+            value={maxRound}
           />
         </FlexDiv>
       )}
@@ -91,8 +101,9 @@ const Settings = () => {
             type="text"
             name="Work"
             placeholder="Work Period"
-            value={workLength}
+            onKeyPress={(e) => onlyNumber(e)}
             onChange={(e) => setWorkLength(e.target.value)}
+            value={workLength}
           />
         </FlexDiv>
       )}
@@ -103,8 +114,9 @@ const Settings = () => {
             type="text"
             name="Rest"
             placeholder="Rest Period"
-            value={restLength}
+            onKeyPress={(e) => onlyNumber(e)}
             onChange={(e) => setRestLength(e.target.value)}
+            value={restLength}
           />
         </FlexDiv>
       )}
