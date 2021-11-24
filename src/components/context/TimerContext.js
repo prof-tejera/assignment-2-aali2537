@@ -171,6 +171,7 @@ const TimerProvider = ({ children }) => {
   useEffect(() => {
     if (timerActive) {
       setPercent((currentTime / roundTime) * 100);
+      setRoundTime(easyRoundTime());
     }
   }, [currentTime, roundTime, timerActive]);
 
