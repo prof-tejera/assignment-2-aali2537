@@ -18,6 +18,7 @@ const ListPanel = styled(Panel)`
   width: 40em;
   height: 4.05em;
   position: relative;
+  background-color: #0f242e;
 `;
 
 const TimerList = styled.ul`
