@@ -48,10 +48,12 @@ const Flipper = styled(Panel)`
 const FrontSide = styled.div`
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
-
+  background-color: #0f242e;
   position: absolute;
   top: 0;
   left: 0;
+  border-radius: 1em;
+  height: 44em;
 `;
 
 const BackSide = styled(FrontSide)`
